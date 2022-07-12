@@ -2,19 +2,34 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { UserResolver } from './guards/user.resolver';
-import { MainPageComponent } from './pages/main-page/main-page.component';
-import { SigninComponent } from './pages/signin/signin.component';
-import { SignupComponent } from './pages/signup/signup.component';
-import { UserPageComponent } from './pages/user-page/user-page.component';
 
 const routes: Routes = [
-  { path: 'signup', component: SignupComponent },
-  { path: 'signin', component: SigninComponent },
-  { path: '', component: MainPageComponent, canActivate: [AuthGuard] },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./pages/main-page/main-page.module').then(
+        (m) => m.MainPageModule
+      ),
+    canActivate: [AuthGuard],
+    pathMatch: 'full',
+  },
+  {
+    path: 'signup',
+    loadChildren: () =>
+      import('./pages/signup/signup.module').then((m) => m.SignupModule),
+  },
+  {
+    path: 'signin',
+    loadChildren: () =>
+      import('./pages/signin/signin.module').then((m) => m.SigninModule),
+  },
   {
     path: 'user/:id',
-    component: UserPageComponent,
     resolve: { user: UserResolver },
+    loadChildren: () =>
+      import('./pages/user-page/user-page.module').then(
+        (m) => m.UserPageModule
+      ),
     canActivate: [AuthGuard],
   },
   { path: '**', redirectTo: '' },
