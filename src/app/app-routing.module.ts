@@ -10,7 +10,7 @@ const routes: Routes = [
       import('./pages/main-page/main-page.module').then(
         (m) => m.MainPageModule
       ),
-    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
     pathMatch: 'full',
   },
   {
@@ -30,7 +30,7 @@ const routes: Routes = [
       import('./pages/user-page/user-page.module').then(
         (m) => m.UserPageModule
       ),
-    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
   },
   { path: '**', redirectTo: '' },
 ];
