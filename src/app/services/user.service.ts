@@ -30,4 +30,8 @@ export class UserService {
         })
       );
   }
+
+  deleteUser(user: IUser): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/users/${user.id}`);
+  }
 }

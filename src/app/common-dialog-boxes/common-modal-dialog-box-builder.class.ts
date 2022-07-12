@@ -49,6 +49,10 @@ export class CommonModalDialogBoxBuilder {
     this.componenProperties.style = 'danger';
     return this;
   }
+  setSuccessStyle() {
+    this.componenProperties.style = 'success';
+    return this;
+  }
 
   openAlertModal(): NgbModalRef {
     const modalRef = this.modalService.open(
