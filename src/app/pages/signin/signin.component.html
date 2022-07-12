@@ -1,5 +1,5 @@
 <div class="container w-25 mt-5">
-  <h1 class="text-center">Register</h1>
+  <h1 class="text-center">Log in to the system</h1>
   <form [formGroup]="signupForm" novalidate (ngSubmit)="login()">
     <div class="form-group">
       <label for="email">Email address</label>
@@ -9,9 +9,9 @@
       <label for="password">Password</label>
       <input type="password" id="password" class="form-control" placeholder="Password" formControlName="password">
     </div>
-    <a class="nav-link" routerLink="/signin">login</a>
-    <div class="text-center">
-      <button type="submit" class="btn btn-primary" [disabled]="signupForm.invalid">Sign up</button>
+    <a routerLink="/signup">register</a>
+    <div class="nav-link" class="text-center">
+      <button type="submit" class="btn btn-primary" [disabled]="signupForm.invalid">Sign in</button>
     </div>
   </form>
 </div>

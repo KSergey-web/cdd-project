@@ -6,6 +6,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SigninModule } from './pages/signin/signin.module';
 import { SignupModule } from './pages/signup/signup.module';
 import { API_URL } from './urls-tokens';
 
@@ -17,6 +18,7 @@ import { API_URL } from './urls-tokens';
     HttpClientModule,
     SignupModule,
     NgbModule,
+    SigninModule,
   ],
   providers: [
     {

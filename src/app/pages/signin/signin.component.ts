@@ -4,16 +4,16 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { takeUntil } from 'rxjs/operators';
-import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModalDialogBoxBuilder } from 'src/app/widgets/common-dialog-boxes/common-modal-dialog-box-builder.class';
+import { HttpErrorResponse } from '@angular/common/http';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss'],
+  selector: 'app-signin',
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.scss'],
 })
-export class SignupComponent implements OnInit, OnDestroy {
+export class SigninComponent implements OnInit, OnDestroy {
   signupForm: FormGroup;
   private onDestroy$ = new Subject<boolean>();
 
@@ -39,7 +39,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   login() {
     const val = this.signupForm.value;
     this.authService
-      .register(val)
+      .login(val)
       .pipe(takeUntil(this.onDestroy$))
       .subscribe(() => {
         this.router.navigate(['']);
@@ -53,7 +53,7 @@ export class SignupComponent implements OnInit, OnDestroy {
     this.createBadModalAlert({ text: textError });
   }
 
-  private createBadModalAlert({ header = 'Error register', text = 'error' }) {
+  private createBadModalAlert({ header = 'Error login', text = 'error' }) {
     const bulder = new CommonModalDialogBoxBuilder(this.modalService);
     bulder.addHeader(header).addText(text).setDangerStyle().openAlertModal();
   }

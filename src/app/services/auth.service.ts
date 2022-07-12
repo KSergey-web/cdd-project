@@ -22,7 +22,7 @@ export class AuthService {
     localStorage.setItem('token', token);
   }
 
-  signup(newUser: ISignupData): Observable<any> {
+  register(newUser: ISignupData): Observable<any> {
     return this.http
       .post<{ token: string; id: string }>(`${this.apiUrl}/register`, newUser)
       .pipe(

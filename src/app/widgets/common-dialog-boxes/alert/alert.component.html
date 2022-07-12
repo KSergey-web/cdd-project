@@ -1,0 +1,15 @@
+<div class="container" [styleDialog]="style">
+  <div class="modal-header ">
+    <h2 *ngIf="header" class="modal-title text-center">{{ header }}</h2>
+  </div>
+  <div class="modal-body">
+    <div class="alert" role="alert">
+      <p class="" *ngIf="text">{{ text }}</p>
+    </div>
+  </div>
+  <div class="modal-footer text-center">
+    <button class="btn btn-info" *ngIf="acceptButtonText" (click)="onClick()">
+      {{ acceptButtonText }}
+    </button>
+  </div>
+</div>
