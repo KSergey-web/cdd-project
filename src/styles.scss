@@ -3,6 +3,9 @@
 /* Importing Bootstrap SCSS file. */
 @import "~bootstrap/scss/bootstrap";
 
+.container {
+  background-color: white;
+}
 h1 {
   font-size: 1.5rem;
 }
@@ -13,4 +16,12 @@ ul {
 
 caption {
   caption-side: top;
+}
+
+body {
+  background-image: url("./assets/background.png");
+  background-attachment: fixed;
+  background-size: cover;
+  left: 0px;
+  top: 0px;
 }
