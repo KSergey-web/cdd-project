@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { IPaginationInfo } from 'src/app/interfaces/pagination-info.interface';
@@ -9,13 +15,17 @@ import { ResourceService } from 'src/app/services/resource.service';
   selector: 'app-list-resource',
   templateUrl: './list-resource.component.html',
   styleUrls: ['./list-resource.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListResourceComponent implements OnInit, OnDestroy {
   resources: IResource[] = [];
   paginationInfo: IPaginationInfo = {};
   selectedPage: number = 1;
 
-  constructor(private resourceService: ResourceService) {}
+  constructor(
+    private resourceService: ResourceService,
+    private cd: ChangeDetectorRef
+  ) {}
   ngOnInit(): void {
     this.getResources({ per_page: 4 });
   }
@@ -42,6 +52,7 @@ export class ListResourceComponent implements OnInit, OnDestroy {
       .subscribe(({ resources, paginationInfo }) => {
         this.resources = resources;
         this.paginationInfo = paginationInfo;
+        this.cd.detectChanges();
       });
   }
 }

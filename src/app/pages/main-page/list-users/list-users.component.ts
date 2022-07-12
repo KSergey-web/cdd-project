@@ -1,4 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -11,6 +17,7 @@ import { UserService } from 'src/app/services/user.service';
   selector: 'app-list-users',
   templateUrl: './list-users.component.html',
   styleUrls: ['./list-users.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListUsersComponent implements OnInit, OnDestroy {
   users: IUser[] = [];
@@ -19,7 +26,8 @@ export class ListUsersComponent implements OnInit, OnDestroy {
 
   constructor(
     private userService: UserService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
@@ -48,6 +56,7 @@ export class ListUsersComponent implements OnInit, OnDestroy {
       .subscribe(({ users, paginationInfo }) => {
         this.users = users;
         this.paginationInfo = paginationInfo;
+        this.cd.detectChanges();
       });
   }
 
