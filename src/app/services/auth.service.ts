@@ -15,11 +15,11 @@ export class AuthService {
   ) {}
 
   get authToken() {
-    return localStorage.getItem('id_token');
+    return localStorage.getItem('token');
   }
 
   private setSession(token: string) {
-    localStorage.setItem('id_token', token);
+    localStorage.setItem('token', token);
   }
 
   signup(newUser: ISignupData): Observable<any> {
