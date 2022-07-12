@@ -1,0 +1,18 @@
+<ul class="d-flex justify-content-between align-self-stretch">
+  <li *ngFor="let user of users" class="align-self-stretch" style="width: 15rem;">
+    <div class="card">
+      <img class="card-img-top" [src]="user.avatar" alt="image is not loaded" style="height: 15rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{user | fio}}</h5>
+        <p class="card-text"> {{user.email}}
+        </p>
+        <a href="#" class="btn btn-primary">Go to user</a>
+      </div>
+    </div>
+  </li>
+</ul>
+<div class="text-center">
+  <ngb-pagination class="d-inline-block" [collectionSize]="this.paginationInfo.total ?? 1"
+    [pageSize]="paginationInfo.per_page ?? 1" [(page)]="selectedPage" (pageChange)="onChangePage()" [maxSize]="5"
+    [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+</div>

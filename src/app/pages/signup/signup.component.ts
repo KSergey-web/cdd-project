@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { takeUntil } from 'rxjs/operators';
 import { HttpErrorResponse } from '@angular/common/http';
-import { CommonModalDialogBoxBuilder } from 'src/app/widgets/common-dialog-boxes/common-modal-dialog-box-builder.class';
+import { CommonModalDialogBoxBuilder } from 'src/app/common-dialog-boxes/common-modal-dialog-box-builder.class';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

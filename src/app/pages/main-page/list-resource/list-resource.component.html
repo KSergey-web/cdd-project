@@ -1,0 +1,28 @@
+<div class="table-responsive">
+  <table class="table">
+    <caption><b>Resources</b></caption>
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Year</th>
+        <th scope="col">Color</th>
+        <th scope="col">Pantone value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let resource of resources; let i = index'>
+        <th scope="row">{{i+1}}</th>
+        <td> {{resource.name}}</td>
+        <td> {{resource.year}}</td>
+        <td> {{resource.color}}</td>
+        <td> {{resource.pantone_value}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div class="text-center">
+  <ngb-pagination class="d-inline-block" [collectionSize]="this.paginationInfo.total ?? 1"
+    [pageSize]="paginationInfo.per_page ?? 1" [(page)]="selectedPage" (pageChange)="onChangePage()" [maxSize]="5"
+    [rotate]="true" [boundaryLinks]="true"></ngb-pagination>
+</div>
