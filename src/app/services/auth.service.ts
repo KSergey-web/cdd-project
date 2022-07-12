@@ -5,21 +5,25 @@ import { API_URL } from '../urls-tokens';
 import { tap } from 'rxjs/operators';
 import { ILoginData } from '../interfaces/login-data.interface';
 import { ISignupData } from '../interfaces/signup-data.interface';
+import { Router } from '@angular/router';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   constructor(
     private http: HttpClient,
-    @Inject(API_URL) private apiUrl: string
+    @Inject(API_URL) private apiUrl: string,
+    private router: Router
   ) {}
 
+  private readonly TOKEN_KEY = 'token';
+
   get authToken() {
-    return localStorage.getItem('token');
+    return localStorage.getItem(this.TOKEN_KEY);
   }
 
   private setSession(token: string) {
-    localStorage.setItem('token', token);
+    localStorage.setItem(this.TOKEN_KEY, token);
   }
 
   register(newUser: ISignupData): Observable<any> {
@@ -40,5 +44,14 @@ export class AuthService {
           this.setSession(res.token);
         })
       );
+  }
+
+  logout() {
+    localStorage.removeItem(this.TOKEN_KEY);
+    this.router.navigate(['signin']);
+  }
+
+  public isLoggedIn(): boolean {
+    return !!this.authToken;
   }
 }

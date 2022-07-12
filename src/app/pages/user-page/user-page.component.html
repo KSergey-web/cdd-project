@@ -10,6 +10,9 @@
       avatar: {{user.avatar}} <br />
       <mark *ngIf="updatedAt">updated ad: {{updatedAt | date:'dd.MM.YYYY HH:mm'}}</mark> <br />
     </p>
-    <button class="btn btn-secondary" (click)="editUser()">Edit</button>
+    <button class="btn btn-secondary" (click)="editUser()">Edit</button> <a routerLink=""
+      class="ml-3 btn btn-primary">To main
+      page</a>
   </div>
+
 </div>
