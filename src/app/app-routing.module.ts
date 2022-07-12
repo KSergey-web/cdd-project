@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards/auth.guard';
 import { UserResolver } from './guards/user.resolver';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { SigninComponent } from './pages/signin/signin.component';
@@ -9,11 +10,12 @@ import { UserPageComponent } from './pages/user-page/user-page.component';
 const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'signin', component: SigninComponent },
-  { path: '', component: MainPageComponent },
+  { path: '', component: MainPageComponent, canActivate: [AuthGuard] },
   {
     path: 'user/:id',
     component: UserPageComponent,
     resolve: { user: UserResolver },
+    canActivate: [AuthGuard],
   },
   { path: '**', redirectTo: '' },
 ];
