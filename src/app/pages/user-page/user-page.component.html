@@ -1,0 +1,14 @@
+<div class="container">
+  <h1 class="text-center">Страница пользователя</h1>
+  <div *ngIf="user">
+    <img class="d-block" [src]="user.avatar" alt="image is not loaded" style="height: 15rem;">
+    <p>
+      id: {{user.id}} <br />
+      email: {{user.email}} <br />
+      first name: {{user.first_name}} <br />
+      last name: {{user.last_name}} <br />
+      avatar: {{user.avatar}} <br />
+    </p>
+    <button class="btn btn-secondary">Edit</button>
+  </div>
+</div>

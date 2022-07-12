@@ -34,4 +34,14 @@ export class UserService {
   deleteUser(user: IUser): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/users/${user.id}`);
   }
+
+  getUserById(userId: number): Observable<IUser> {
+    return this.http
+      .get<{ data: IUser }>(`${this.apiUrl}/users/${userId}`)
+      .pipe(
+        map(({ data: user }) => {
+          return user;
+        })
+      );
+  }
 }
