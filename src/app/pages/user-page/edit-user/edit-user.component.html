@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit User</h4>
+    <button type="button" class="close btn-close" aria-label="Close" (click)="onDissmis()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="userForm" novalidate (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Email address</label>
+      <input type="email" id="email" class="form-control" formControlName="email" placeholder="Enter email">
+    </div>
+    <div class="form-group">
+      <label for="first_name">First Name</label>
+      <input type="text" id="first_name" class="form-control" formControlName="first_name"
+        placeholder="Enter first_name">
+    </div>
+    <div class="form-group">
+      <label for="last_name">Last name</label>
+      <input type="text" id="last_name" class="form-control" formControlName="last_name" placeholder="Enter last_name">
+    </div>
+    <div class="form-group">
+      <label for="avatar">Avatar URL</label>
+      <input type="text" id="avatar" class="form-control" formControlName="avatar" placeholder="Enter avatar URL">
+    </div>
+    <div class="text-center">
+      <button type="url" class="btn btn-primary" [disabled]="userForm.invalid">Edit</button>
+    </div>
+  </form>
+</div>

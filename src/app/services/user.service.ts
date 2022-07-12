@@ -3,6 +3,7 @@ import { Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IPaginationInfo } from '../interfaces/pagination-info.interface';
+import { IUpdatedUser } from '../interfaces/updated-user.interface';
 import { IUser } from '../interfaces/user.interface';
 import { API_URL } from '../urls-tokens';
 
@@ -43,5 +44,15 @@ export class UserService {
           return user;
         })
       );
+  }
+
+  //отправляю всего юзера, потому что в тз стоит put, а не patch
+  updateUser(user: IUser): Observable<IUpdatedUser> {
+    return this.http.patch<any>(`${this.apiUrl}/users/${user.id}`, user).pipe(
+      map((res) => {
+        res.updatedAt = new Date(res.updatedAt);
+        return res as IUpdatedUser;
+      })
+    );
   }
 }

@@ -8,7 +8,8 @@
       first name: {{user.first_name}} <br />
       last name: {{user.last_name}} <br />
       avatar: {{user.avatar}} <br />
+      <mark *ngIf="updatedAt">updated ad: {{updatedAt | date:'dd.MM.YYYY HH:mm'}}</mark> <br />
     </p>
-    <button class="btn btn-secondary">Edit</button>
+    <button class="btn btn-secondary" (click)="editUser()">Edit</button>
   </div>
 </div>
