@@ -60,7 +60,7 @@ export class ListUsersComponent implements OnInit, OnDestroy {
       });
   }
 
-  onDeleteUser(user: IUser) {
+  onDeleteUser(user: IUser, ind: number) {
     this.userService
       .deleteUser(user)
       .pipe(takeUntil(this.onDestroy$))
@@ -68,8 +68,14 @@ export class ListUsersComponent implements OnInit, OnDestroy {
         next: () => {
           const text = `user with id ${user.id} deleted`;
           this.createSuccesModalAlert({ text });
+          this.deleteUserFromList(ind);
         },
       });
+  }
+
+  private deleteUserFromList(ind: number) {
+    this.users.splice(ind, 1);
+    this.cd.detectChanges();
   }
 
   private createSuccesModalAlert({ header = 'Succes', text = '' }) {

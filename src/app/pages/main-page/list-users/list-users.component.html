@@ -1,5 +1,5 @@
 <ul class="d-flex justify-content-between flex-wrap">
-  <li *ngFor="let user of users" class="align-self-stretch mt-2" style="width: 15rem;">
+  <li *ngFor="let user of users; let i = index" class="align-self-stretch mt-2" style="width: 15rem;">
     <div class="card">
       <img class="card-img-top" [src]="user.avatar" alt="image is not loaded" style="height: 15rem;">
       <div class="card-body">
@@ -7,7 +7,7 @@
         <p class="card-text"> {{user.email}}
         </p>
         <a [routerLink]="'/user/' + user.id" class="btn btn-primary">Go to user</a>
-        <button class="btn btn-danger ml-2" (click)="onDeleteUser(user)">delete</button>
+        <button class="btn btn-danger ml-2" (click)="onDeleteUser(user, i)">delete</button>
       </div>
     </div>
   </li>
